@@ -164,7 +164,7 @@ var deletePost = function(){
 				console.warn(response.data);
 				return;
 			}			
-
+ 			
  			if(response.data == "-1"){
 				console.log(response.data); 
  				$(".error").attr("style", "displa:block").html();
@@ -174,6 +174,7 @@ var deletePost = function(){
 				//remove
 				console.log("삭제됨 : " + response.data); 
 				$("#list-guestbook li[data-no='"+ response.data +"']").remove();
+				$("#dialog-delete-form").dialog("close");
  			}		
 		},
 		error:function(xhr, status, e){ // xhr왜안씀? 객체니깐  통신더할려면 쓰던가. 근데 지금은 에러만출력하고 끝내니깐 
@@ -216,7 +217,7 @@ $(function(){
 				//$.ajax({})
 				//결과를보고 다이얼로그를 닫아라
 				//ajax이좋은점?? 웹에서는 리다이렉트해서뭐근ㅁ럼나렇
-				deletePost();
+				deletePost();				
 			}, 
 			"취소" : function(){
 				dialogDelete.dialog("close");
@@ -224,6 +225,8 @@ $(function(){
 		},
 		close : function(){
 			console.log("close시 뒤처리");
+			$(".error").attr("style", "display:none");
+			$("#dialog-delete-form input[type='password']").val('');
 		}
 	});
 	
