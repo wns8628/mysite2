@@ -32,7 +32,7 @@ public class ModifyFormAction implements Action {
 	    vo.setNo(Long.parseLong(no));			
 		BoardDao dao = new BoardDao();	
 		BoardVo view = dao.getView(vo);
-		
+
 		if(view.getUserNo() == authUser.getNo()) {	
 			request.setAttribute("view", view);
 			WebUtils.forward(request, response, "/WEB-INF/views/board/modify.jsp");
